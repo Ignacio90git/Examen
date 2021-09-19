@@ -1,0 +1,81 @@
+﻿@model Model.EmpleadoDTO
+@{
+    ViewBag.Title = "Detalle empleado";
+}
+
+<script src="~/Scripts/Admin/DetalleEmpleado.js"></script>
+<script type="text/javascript">
+    var CrearEmpleado = "@Url.Action("CrearEmpleado", "Admin")";
+</script>
+
+<h2>Detalle empleado</h2>
+
+<div class="content-heading">
+    <div>
+        Usa el siguiente formulario para registrar/editar los <b>empleados</b>.
+    </div>
+</div>
+
+<form id="formDetalleEmpleado">
+    @Html.HiddenFor(model => Model.Id)
+    <div class="card card-default" style="border-color: #aaaaaa; border-width: 1px; border-style: solid; margin:1%">
+        <div class="card-header d-flex align-items-center">
+            <div class="form-group">
+                <div class="card-body">
+                    <div class="col-md-4 col-sm-4 col-xl-12 form-group">
+                        <label for="IdEmpresa" class="control-label font-weight-bold">Empresa</label>
+                        @Html.DropDownListFor(Model => Model.EmpresaList.FirstOrDefault().Id, new SelectList(Model.EmpresaList, "Id", "Nombre"), new { @class = "chosen-select form-control", @id = "IdEmpresa", @lang = "es" })
+                    </div>
+                    <div class="form-group col-xl-4 col-sm-4">
+                        <label for="Departamento" class="control-label font-weight-bold">Departamento</label>
+                        @Html.DropDownListFor(model => model.IdDepartamento, new SelectList(Model.DepartamentoList, "Id", "Nombre"), new { @class = "chosen-select form-control", @id = "IdDepartamento", @lang = "es" })
+                    </div>
+                    <div class="form-group col-xl-4 col-sm-4">
+                        <label class="text-bold col-form-label">Fecha ingreso</label>
+                        <div class="input-group date" style="display: flex;">
+                            @if (Model.Id == 0)
+                            {
+                                Model.FechaIngreso = DateTime.Now;
+                            }
+                            @Html.TextBoxFor(model => model.FechaIngreso, new { @class = "form-control", @id = "FechaIngreso", @autocomplete = "off", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="form-group col-xl-4 col-sm-4">
+                        <label class="text-bold col-form-label">Nombre*</label>
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control ", @id = "Nombre", @maxlength = 60, @required = "required" })
+                    </div>
+                    <div class="form-group col-xl-4 col-sm-4">
+                        <label class="control-label col-form-label font-weight-bold">Fecha de nacimiento*</label>
+                        @*<div class="text-bold col-form-label" style="display: flex;">*@
+                        @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "form-control", @id = "FechaNacimiento", @autocomplete = "off", @required = "required" })
+                        @*</div>*@
+                    </div>
+                    <div class="form-group col-xl-4 col-sm-4">
+                        <label class="text-bold col-form-label">Correo*</label>
+                        @Html.TextBoxFor(model => model.Correo, new { @class = "form-control ", @id = "Correo", @required = "required" })
+                    </div>
+                    <div class="form-group col-xl-4 col-sm-4">
+                        <label class="text-bold col-form-label">Genero</label>
+                        @Html.DropDownListFor(model => model.IdGenero, new SelectList(Model.GeneroList, "Id", "Genero"), new { @class = "chosen-select form-control", @id = "IdGenero", @lang = "es" })
+                    </div>
+                    <div class="form-group col-xl-4 col-sm-4">
+                        <label class="text-bold col-form-label">Telefono</label>
+                        @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @id = "Telefono", @autocomplete = "off", @type = "number" })
+                    </div>
+                    <div class="form-group col-xl-4 col-sm-4">
+                        <label class="text-bold col-form-label">Celular</label>
+                        @Html.TextBoxFor(model => model.Celular, new { @class = "form-control number-separator", @id = "Celular", @autocomplete = "off", @type = "number", @maxlength = "10" })
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="form-group" style="text-align:right">
+                <div style="margin-right:20px">
+                    <button class="btn btn-secondary" id="btnReturn" type="button">Regresar</button>
+                    <button class="btn btn-success" id="btnSaveEmpleado" type="submit">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

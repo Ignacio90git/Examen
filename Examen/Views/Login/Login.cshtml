@@ -1,0 +1,43 @@
+@model Model.UsuarioDTO
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<script type="text/javascript">
+    var UrlLogin = "@Url.Action("Login", "LogIn")";
+</script>
+<script src="~/Scripts/Login/Login.js"></script>
+<div style=" display: flex; justify-content: center;  margin-top: 7%;">
+    <div class="card card-flat" style=" padding: 20px; border-width: 1px; border-color: #aaaaaa; border-style: solid;">
+        <div class="card-header text-center bg-dark">
+            <a href="#">
+                <img class="block-center rounded" src="~/Content/Imagen/logoTest.png" alt="Image" />
+            </a>
+        </div>
+        <div class="card-body">
+            <p class="text-center py-2">BIENVENIDO.</p>
+            <form class="mb-3" id="loginForm" novalidate="">
+                <div class="form-group">
+                    <div class="input-group with-focus">
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control border-right-0 no-upper", @id = "UserName", @placeholder = "Usuario", @autocomplete = "off", @required = "required" })
+                        <div class="input-group-append">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                                <em class="fa fa-envelope"></em>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group with-focus">
+                        @Html.PasswordFor(model => model.UserPassword, new { @class = "form-control border-right-0 no-upper", @id = "UserPassword", @placeholder = "Contrasena", @required = "required" })
+                        <div class="input-group-append">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                                <em class="fa fa-lock"></em>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-block btn-primary mt-6" type="submit" id="btnLogin">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+</div>

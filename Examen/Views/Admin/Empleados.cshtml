@@ -1,0 +1,83 @@
+﻿@using Model;
+@{
+    ViewBag.Title = "Empleados";
+}
+@model Model.EmpleadoDTO
+<h2>Empleados</h2>
+
+<script src="~/Scripts/Admin/Empleados.js"></script>
+<script type="text/javascript">
+    var BuscarEmpleados = "@Url.Action("BuscarEmpleados", "Admin")";
+    var DetalleEmpleado = "@Url.Action("DetalleEmpleado", "Admin")";
+    var EliminarEmpleado = "@Url.Action("EliminarEmpleado", "Admin")";
+    var modelJson = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+</script>
+
+<div class="content-heading">
+    <div>
+        Usa el siguiente formulario para mostrar los <b>empleados</b> registrados en la aplicaci&oacute;n.
+    </div>
+
+</div>
+
+<div class="card card-default" style="border-color: #aaaaaa; border-width: 1px;      border-style: solid; margin:1%">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+        <form id="formBuscadorEmpleados">
+            <div class="form-group">
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label for="IdEmpresa" class="control-label font-weight-bold">Empresa</label>
+                    @Html.DropDownListFor(Model => Model.EmpresaList.FirstOrDefault().Id, new SelectList(Model.EmpresaList, "Id", "Nombre"), new { @class = "chosen-select form-control", @id = "IdEmpresa", @lang = "es" })
+                </div>
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label for="IdDepartamento" class="control-label font-weight-bold">Departamento</label>
+                    @Html.DropDownListFor(model => model.IdDepartamento, new SelectList(Model.DepartamentoList, "Id", "Nombre"), new { @class = "chosen-select form-control", @id = "IdDepartamento", @lang = "es" })
+                </div>
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label for="Nombre" class="control-label font-weight-bold">Nombre empleado</label>
+                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control ", @id = "Nombre", @maxlength = 60 })
+                </div>
+
+            </div>
+            <div class="form-group" style="text-align:right">
+                <div style="margin-right:20px">
+                    <button type="submit" id="btnBuscar" class="btn btn-primary">Buscar</button>
+                    <button type="button" id="btnRegistrar" class="btn btn-success">Registrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr />
+
+    <div class="card card-default containerGridBuscador">
+        <div class="card-header">Resultados de b&uacute;squeda</div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <!-- DATATABLE-->
+                <div class="card">
+                    <div class="card-body">
+                        <table id="gridBuscador" width="100%" class="table table-striped table-bordered table-hover compact">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Fecha ingreso</th>
+                                    <th>Correo</th>
+                                    <th>Genero</th>
+                                    <th>Telefono</th>
+                                    <th>Celular</th>
+                                    <th>Departamento</th>
+                                    <th>Empresa</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExamenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cat_Departamento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdEmpresa" Type="Int64" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cat_Empleados" Relationship="Self.fk_IdDepartamento" FromRole="Cat_Departamento" ToRole="Cat_Empleados" />
+    <NavigationProperty Name="Cat_Empresa" Relationship="Self.fk_IdEmpresa" FromRole="Cat_Departamento" ToRole="Cat_Empresa" />
+  </EntityType>
+  <EntityType Name="Cat_Empleados">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDepartamento" Type="Int64" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Genero" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Activo" Type="Boolean" />
+    <NavigationProperty Name="Cat_Departamento" Relationship="Self.fk_IdDepartamento" FromRole="Cat_Empleados" ToRole="Cat_Departamento" />
+  </EntityType>
+  <EntityType Name="Cat_Empresa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cat_Departamento" Relationship="Self.fk_IdEmpresa" FromRole="Cat_Empresa" ToRole="Cat_Departamento" />
+    <NavigationProperty Name="Cat_Usuarios" Relationship="Self.fk_Cat_Usuarios_IdEmpresa" FromRole="Cat_Empresa" ToRole="Cat_Usuarios" />
+  </EntityType>
+  <EntityType Name="Cat_Usuarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdEmpresa" Type="Int64" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" />
+    <NavigationProperty Name="Cat_Empresa" Relationship="Self.fk_Cat_Usuarios_IdEmpresa" FromRole="Cat_Usuarios" ToRole="Cat_Empresa" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="fk_IdDepartamento">
+    <End Role="Cat_Departamento" Type="Self.Cat_Departamento" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cat_Empleados" Type="Self.Cat_Empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Departamento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cat_Empleados">
+        <PropertyRef Name="IdDepartamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IdEmpresa">
+    <End Role="Cat_Empresa" Type="Self.Cat_Empresa" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cat_Departamento" Type="Self.Cat_Departamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cat_Departamento">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Cat_Usuarios_IdEmpresa">
+    <End Role="Cat_Empresa" Type="Self.Cat_Empresa" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cat_Usuarios" Type="Self.Cat_Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cat_Usuarios">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ExamenEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cat_Departamento" EntityType="Self.Cat_Departamento" />
+    <EntitySet Name="Cat_Empleados" EntityType="Self.Cat_Empleados" />
+    <EntitySet Name="Cat_Empresa" EntityType="Self.Cat_Empresa" />
+    <EntitySet Name="Cat_Usuarios" EntityType="Self.Cat_Usuarios" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="fk_IdDepartamento" Association="Self.fk_IdDepartamento">
+      <End Role="Cat_Departamento" EntitySet="Cat_Departamento" />
+      <End Role="Cat_Empleados" EntitySet="Cat_Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IdEmpresa" Association="Self.fk_IdEmpresa">
+      <End Role="Cat_Empresa" EntitySet="Cat_Empresa" />
+      <End Role="Cat_Departamento" EntitySet="Cat_Departamento" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Cat_Usuarios_IdEmpresa" Association="Self.fk_Cat_Usuarios_IdEmpresa">
+      <End Role="Cat_Empresa" EntitySet="Cat_Empresa" />
+      <End Role="Cat_Usuarios" EntitySet="Cat_Usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExamenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cat_Departamento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEmpresa" Type="bigint" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Cat_Empleados">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDepartamento" Type="bigint" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="255" />
+    <Property Name="FechaNacimiento" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Correo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="IdGenero" Type="smallint" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="15" />
+    <Property Name="Celular" Type="varchar" MaxLength="15" />
+    <Property Name="FechaIngreso" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="Cat_Empresa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Cat_Genero">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Genero" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Cat_Usuarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEmpresa" Type="bigint" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="255" />
+    <Property Name="UserName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Examen.dbo.VEmpeladosWeb' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="VEmpeladosWeb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="255" />
+    <Property Name="FechaNacimiento" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="IdGenero" Type="smallint" Nullable="false" />
+    <Property Name="Genero" Type="varchar" MaxLength="255" />
+    <Property Name="Correo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="15" />
+    <Property Name="Celular" Type="varchar" MaxLength="15" />
+    <Property Name="FechaIngreso" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="IdDepartamento" Type="bigint" Nullable="false" />
+    <Property Name="NombreDepartamento" Type="varchar" MaxLength="255" />
+    <Property Name="NombreEmpresa" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="fk_Cat_Empleados_IdDepartamento">
+    <End Role="Cat_Departamento" Type="Self.Cat_Departamento" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cat_Empleados" Type="Self.Cat_Empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Departamento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cat_Empleados">
+        <PropertyRef Name="IdDepartamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Cat_Empleados_IdGenero">
+    <End Role="Cat_Genero" Type="Self.Cat_Genero" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cat_Empleados" Type="Self.Cat_Empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Genero">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cat_Empleados">
+        <PropertyRef Name="IdGenero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Cat_Usuarios_IdEmpresa">
+    <End Role="Cat_Empresa" Type="Self.Cat_Empresa" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cat_Usuarios" Type="Self.Cat_Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cat_Usuarios">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IdEmpresa">
+    <End Role="Cat_Empresa" Type="Self.Cat_Empresa" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cat_Departamento" Type="Self.Cat_Departamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cat_Departamento">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ExamenModelStoreContainer">
+    <EntitySet Name="Cat_Departamento" EntityType="Self.Cat_Departamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cat_Empleados" EntityType="Self.Cat_Empleados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cat_Empresa" EntityType="Self.Cat_Empresa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cat_Genero" EntityType="Self.Cat_Genero" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cat_Usuarios" EntityType="Self.Cat_Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VEmpeladosWeb" EntityType="Self.VEmpeladosWeb" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VEmpeladosWeb].[Id] AS [Id], 
+    [VEmpeladosWeb].[Nombre] AS [Nombre], 
+    [VEmpeladosWeb].[FechaNacimiento] AS [FechaNacimiento], 
+    [VEmpeladosWeb].[IdGenero] AS [IdGenero], 
+    [VEmpeladosWeb].[Genero] AS [Genero], 
+    [VEmpeladosWeb].[Correo] AS [Correo], 
+    [VEmpeladosWeb].[Telefono] AS [Telefono], 
+    [VEmpeladosWeb].[Celular] AS [Celular], 
+    [VEmpeladosWeb].[FechaIngreso] AS [FechaIngreso], 
+    [VEmpeladosWeb].[IdDepartamento] AS [IdDepartamento], 
+    [VEmpeladosWeb].[NombreDepartamento] AS [NombreDepartamento], 
+    [VEmpeladosWeb].[NombreEmpresa] AS [NombreEmpresa]
+    FROM [dbo].[VEmpeladosWeb] AS [VEmpeladosWeb]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="fk_Cat_Empleados_IdDepartamento" Association="Self.fk_Cat_Empleados_IdDepartamento">
+      <End Role="Cat_Departamento" EntitySet="Cat_Departamento" />
+      <End Role="Cat_Empleados" EntitySet="Cat_Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Cat_Empleados_IdGenero" Association="Self.fk_Cat_Empleados_IdGenero">
+      <End Role="Cat_Genero" EntitySet="Cat_Genero" />
+      <End Role="Cat_Empleados" EntitySet="Cat_Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Cat_Usuarios_IdEmpresa" Association="Self.fk_Cat_Usuarios_IdEmpresa">
+      <End Role="Cat_Empresa" EntitySet="Cat_Empresa" />
+      <End Role="Cat_Usuarios" EntitySet="Cat_Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IdEmpresa" Association="Self.fk_IdEmpresa">
+      <End Role="Cat_Empresa" EntitySet="Cat_Empresa" />
+      <End Role="Cat_Departamento" EntitySet="Cat_Departamento" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

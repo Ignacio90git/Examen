@@ -1,0 +1,58 @@
+﻿<!-- START Sidebar (left)-->
+<div class="aside-inner">
+    <nav class="sidebar show-scrollbar scrollbar-macosx light" data-sidebar-anyclick-close="">
+        <!-- START sidebar nav-->
+        <ul class="sidebar-nav">
+
+            <li class="@Html.isActive("Home", "Index")">
+                <a href="@Url.Action("Index", "Home")">
+                    <em class="icon-home"></em>
+                    <span>Inicio</span>
+                </a>
+            </li>
+
+            <li class="@Html.isActive("Inicio")">
+                <a href="#ulEmision" data-toggle="collapse">
+                    <em class="icon-arrow-right-circle"></em>
+                    <span>Inicio</span>
+                </a>
+                <ul id="ulEmision" class="sidebar-nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Home</li>
+                    <li class="@Html.isActive("Home", "Index")">
+                        <a href="@Url.Action("Index", "Home")">
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Login", "Login") ">
+                        <a href="@Url.Action("Login", "Login")">
+                            <span>Cerrar sesion</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="@Html.isActive(controller: "Administracion")">
+                <a href="#ulAdmin" data-toggle="collapse">
+                    <em class="icon-list"></em>
+                    <span>Administracion</span>
+                </a>
+                <ul id="ulAdmin" class="sidebar-nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Empleados</li>
+                    <li class="@Html.isActive("Admin", "Empleados")">
+                        <a href="@Url.Action("Empleados", "Admin")">
+                            <span>Empleados</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Admin", "Usuarios")">
+                        <a href="@Url.Action("Usuarios", "Admin")">
+                            <span>Usuarios</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+        <!-- END sidebar nav-->
+    </nav>
+</div>
+<!-- END Sidebar (left)-->

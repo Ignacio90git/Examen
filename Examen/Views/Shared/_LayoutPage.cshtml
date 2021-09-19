@@ -1,0 +1,55 @@
+﻿@using Model
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Web">
+    <title>Portal administrativo</title>
+
+    <script src="@Scripts.Url("~/Vendor/moment/min/moment-with-locales.js")"></script>
+    <script src="@Scripts.Url("~/Vendor/jquery/dist/jquery.js")"></script>
+    <script src="@Scripts.Url("~/Vendor/bootstrap/dist/js/bootstrap.js")"></script>
+    <script src="@Scripts.Url("~/Vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js")"></script>
+    <script src="@Scripts.Url("~/Scripts/Global.js")"></script>
+
+    <script type="text/javascript">
+        var UrlLogOff = "@Url.Action("LogOff", "Login")";
+        var UrlIndex = "@Url.Action("Index", "Index")";
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+        });
+    </script>
+</head>
+
+<body style="background-color: ghostwhite">
+    <div class="wrapper">
+        @RenderBody()
+        <div class="p-3 text-center">
+            <span class="mr-2">&copy;</span>
+            <span>2021</span>
+            <span>-</span>
+            <span>Web</span>
+        </div>
+    </div>
+    <script src="@Scripts.Url("~/Vendor/bootstrap/dist/js/bootstrap.js")"></script>
+    <script src="@Scripts.Url("~/Vendor/parsleyjs/dist/parsley.js")"></script>
+    <script src="@Scripts.Url("~/Vendor/parsleyjs/dist/i18n/es.js")"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="@Scripts.Url("~/Vendor/parsleyjs/dist/parsley.js")"></script>
+    <script src="@Scripts.Url("~/Vendor/parsleyjs/dist/i18n/es.js")"></script>
+    <script src="@Scripts.Url("~/Scripts/GlobalPreApp.js")"></script>
+    <script src="@Scripts.Url("~/Scripts/app.js")"></script>
+    <script src="@Scripts.Url("~/Scripts/Global.js")"></script>
+</body>
+
+</html>

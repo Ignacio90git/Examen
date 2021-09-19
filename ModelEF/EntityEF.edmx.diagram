@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3ce4dc2cc54349a88f27ca3157390e96" Name="Diagram1">
+        <EntityTypeShape EntityType="ExamenModel.Cat_Departamento" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamenModel.Cat_Empleados" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamenModel.Cat_Empresa" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamenModel.Cat_Genero" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamenModel.Cat_Usuarios" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamenModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamenModel.VEmpeladosWeb" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ExamenModel.fk_Cat_Empleados_IdDepartamento" ManuallyRouted="false" />
+        <AssociationConnector Association="ExamenModel.fk_IdEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="ExamenModel.fk_Cat_Empleados_IdGenero" ManuallyRouted="false" />
+        <AssociationConnector Association="ExamenModel.fk_Cat_Usuarios_IdEmpresa" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,12 @@
+C:\Users\Admin\source\repos\Examen\ModelEF\bin\Debug\ModelEF.exe.config
+C:\Users\Admin\source\repos\Examen\ModelEF\bin\Debug\ModelEF.exe
+C:\Users\Admin\source\repos\Examen\ModelEF\bin\Debug\ModelEF.pdb
+C:\Users\Admin\source\repos\Examen\ModelEF\bin\Debug\EntityFramework.dll
+C:\Users\Admin\source\repos\Examen\ModelEF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin\source\repos\Examen\ModelEF\bin\Debug\EntityFramework.xml
+C:\Users\Admin\source\repos\Examen\ModelEF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin\source\repos\Examen\ModelEF\obj\Debug\ModelEF.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Examen\ModelEF\obj\Debug\ModelEF.csproj.CopyComplete
+C:\Users\Admin\source\repos\Examen\ModelEF\obj\Debug\ModelEF.exe
+C:\Users\Admin\source\repos\Examen\ModelEF\obj\Debug\ModelEF.pdb
+C:\Users\Admin\source\repos\Examen\ModelEF\obj\Debug\ModelEF.csprojAssemblyReference.cache
